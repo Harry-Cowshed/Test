@@ -17,8 +17,9 @@
         
         if ( $ciders->have_posts() ) : 
             while ( $ciders->have_posts() ) : $ciders->the_post();
-                    the_title('<h2>', '</h2>');
-                    the_content();
+            // die(var_dump($post)); Use die, var_dump to show PHP object
+            the_title('<h2>', '</h2>');
+            the_content();
             endwhile;
         else :
             // When no posts are found, output this text.
