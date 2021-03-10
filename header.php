@@ -12,5 +12,5 @@
     </head>
 <body <?php body_class(); ?>>
 <header class="headerWrap">
-    <h1>Test Site</h1>
+    <h1>Cider Cider Cider</h1>
 </header>
