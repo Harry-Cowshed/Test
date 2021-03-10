@@ -11,6 +11,9 @@
         <?php wp_head(); ?>
     </head>
 <body <?php body_class(); ?>>
-<header class="headerWrap">
+<div class="container">
+<header>
     <h1>Cider Cider Cider</h1>
+    <!-- <?php the_title(); ?> -->
+    <!-- gets the title from WP -->
 </header>

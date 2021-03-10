@@ -1,5 +1,7 @@
-<?php get_header(); ?>
-<div class="home-wrapper">
-    <h1>Welcome to my home page</h1>
+<?php 
+    /* Template Name: Homepage */
+    get_header(); ?>
+<div>
+    <h2>Welcome to my home page about cider</h2>
 </div>
 <?php get_footer(); ?>
