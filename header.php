@@ -13,7 +13,15 @@
 <body <?php body_class(); ?>>
 <div class="container">
 <header>
-    <h1>Cider Cider Cider</h1>
+    <h1 id="main_title">Cider Cider Cider</h1>
     <!-- <?php the_title(); ?> -->
     <!-- gets the title from WP -->
+    <?php 
+        wp_nav_menu(
+            [
+                'theme_location' => 'main_nav',
+                'menu_class' => 'main_nav'
+            ]
+        )
+    ?>
 </header>

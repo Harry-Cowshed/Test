@@ -6,3 +6,26 @@ a {
     text-decoration: none;
     color: black;
 }
+
+#main_title {
+    text-align: center;
+}
+
+header:after {
+    content:'';
+    display:block;
+    border-bottom:2px solid black;
+    width: 100%;
+}
+
+.main_nav ul {
+ list-style-type: none;
+ display: flex;
+ flex-direction: row-reverse;
+ justify-content: space-evenly;
+}
+
+.main_nav a:hover {
+    color: rgb(235, 207, 146);
+    text-decoration:none; 
+}

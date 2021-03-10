@@ -36,3 +36,13 @@ function create_posttype() {
 }
 // Hooking up our function to theme setup
 add_action( 'init', 'create_posttype' );
+
+// Theme options
+add_theme_support('menus');
+
+// Menus
+register_nav_menus(
+    [
+        'main_nav' => 'Main Navigation',
+    ]
+);
