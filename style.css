@@ -1,0 +1,12 @@
+/*
+Theme Name: Test Theme
+Author: Test 
+*/
+
+body {
+    background-color: pink;
+}
+
+.content-area {
+    color: blue;
+}
