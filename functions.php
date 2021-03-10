@@ -15,7 +15,7 @@ add_action( 'wp_enqueue_scripts', 'loadBootstrap' );
 // Link CSS 
 function loadCss()
 {
-    wp_register_style('style', get_template_directory_uri() . '/style.css', array(), false, 'all');
+    wp_register_style('style', get_template_directory_uri() . '/css/main.css', array(), false, 'all');
     wp_enqueue_style('style');
 }
 add_action('wp_enqueue_scripts', 'loadCss');
