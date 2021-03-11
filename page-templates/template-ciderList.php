@@ -19,6 +19,26 @@
             while ( $ciders->have_posts() ) : $ciders->the_post();
             // die(var_dump($post)); Use die, var_dump to show PHP object
             the_title('<h2>', '</h2>');
+        ?>
+        <small>
+            <?php 
+                $catList = get_terms( $ciders->ID, 'Sweetness' );
+                $i = 0;
+                foreach ($catList as $term) {
+                    $i += 1;
+                    echo $term->name;
+                }
+            ?> || 
+            <?php 
+                $taList = get_terms( $ciders->ID, 'tags' ); 
+                $i = 0;
+                foreach ($catList as $term) {
+                    $i += 1;
+                    echo $term->name;
+                }
+            ?> 
+        </small>
+        <?php 
             the_content();
             endwhile;
         else :
