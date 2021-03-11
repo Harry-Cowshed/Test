@@ -46,3 +46,35 @@ register_nav_menus(
         'main_nav' => 'Main Navigation',
     ]
 );
+
+// Create custom category
+function awesome_custom_taxonomies() {
+	
+	//add new taxonomy hierarchical
+	$labels = array(
+		'name' => 'Types', // must be plural
+		'singular_name' => 'Type', // singular
+		'search_items' => 'Search Types',
+		'all_items' => 'All Types',
+		'parent_item' => 'Parent Type',
+		'parent_item_colon' => 'Parent Type:',
+		'edit_item' => 'Edit Type',
+		'update_item' => 'Update Type',
+		'add_new_item' => 'Add New Type',
+		'new_item_name' => 'New Type Name',
+		'menu_name' => 'Types'
+	);
+	
+	$args = array(
+		'hierarchical' => true,
+		'labels' => $labels,
+		'show_ui' => true,
+		'show_admin_column' => true,
+		'query_var' => true,
+		'rewrite' => array( 'slug' => 'type' )
+	);
+	
+	register_taxonomy('type', array('wp_ciders'), $args);
+	
+}
+add_action( 'init' , 'awesome_custom_taxonomies' );
