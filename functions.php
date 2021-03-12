@@ -78,7 +78,7 @@ function awesome_custom_taxonomies() {
 	
 
     // Custom tags
-    register_taxonomy('tags', 'wp_ciders', [
+    register_taxonomy('tags', ['wp_ciders'], [
 		'label' => 'tags',
 		'rewrite' => [ 'slug' => 'tag' ],
 		'hierarchical' => false,

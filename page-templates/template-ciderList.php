@@ -12,6 +12,8 @@
                     'post_type' => 'wp_ciders', // This is the name of your post type - change this as required,
                     'post_status' => 'publish',
                     'posts_per_page' => -1, // -1 shows all
+                    // 'cat' => '' // Can add category filter
+                    // 'tag' => '' // Can add tag filter
                 )
             );
         
@@ -22,19 +24,27 @@
         ?>
         <small>
             <?php 
-                $catList = get_terms( $ciders->ID, 'Sweetness' );
+                $catList = get_the_terms( $ciders->ID, 'Sweetness' );
                 $i = 0;
                 foreach ($catList as $term) {
                     $i += 1;
-                    echo $term->name;
+                    if ($i > 1) {
+                        echo ", " . $term->name;
+                    } else {
+                        echo $term->name;
+                    }
                 }
             ?> || 
             <?php 
-                $taList = get_terms( $ciders->ID, 'tags' ); 
+                $tagList = get_the_terms( $ciders->ID, 'tags' ); 
                 $i = 0;
-                foreach ($catList as $term) {
+                foreach ($tagList as $term) {
                     $i += 1;
-                    echo $term->name;
+                    if ($i > 1) {
+                        echo ", " . $term->name;
+                    } else {
+                        echo $term->name;
+                    }
                 }
             ?> 
         </small>
