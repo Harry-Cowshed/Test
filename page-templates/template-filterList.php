@@ -1,22 +1,70 @@
 <?php
-/* Template Name: CiderList */
+/* Template Name: FilterList */
 ?>
 
 <?php get_header(); ?>
 
+<!-- FORM -->
+
+<form method="GET" action="/wordpress/filter-page/">
+
+    <?php
+
+    $terms = get_terms([
+        'taxonomy' => 'Sweetness',
+        'hide_empty' => false
+    ]);
+
+    echo '<select name="sweetness">';
+
+    foreach ($terms as $term) :
+
+        $sweetness = '';
+        if (isset($_GET['sweetness'])) {
+            if ($_GET['sweetness'] == $term->slug) {
+                $sweetness = 'selected';
+            }
+        }
+        echo '<option value="' . $term->slug . '"' . $sweetness . '>' . $term->name . '</option>';
+
+    endforeach;
+
+    echo '</select>';
+
+    ?>
+
+    <input type="hidden" name="submitted" value="Y">
+    <button type="submit">Apply</button>
+
+</form>
+
+
+<!-- LOOP -->
+
 <div id="primary" class="content-area">
     <main id="main" class="site-main" role="main">
         <?php
-        $ciders = new WP_Query(
-            array(
-                'post_type' => 'wp_ciders', // This is the name of your post type - change this as required,
-                'post_status' => 'publish',
-                'posts_per_page' => -1, // -1 shows all
-                // 'cat' => '' // Can add category filter
-                // 'tag' => '' // Can add tag filter
 
-            )
-        );
+        if (isset($_GET['submitted'])) :
+
+            $searched = esc_html($_GET['sweetness']);
+
+        endif;
+
+        $args = [
+            'post_type' => 'wp_ciders', // This is the name of your post type - change this as required can be found by hovering over WP pin,
+            'post_status' => 'publish',
+            'posts_per_page' => -1, // -1 shows all
+            'tax_query' => [
+                [
+                    'taxonomy' => 'Sweetness',
+                    'field' => 'slug',
+                    'terms' => $searched,
+                ]
+            ]
+        ];
+
+        $ciders = new WP_Query($args);
 
         if ($ciders->have_posts()) :
             while ($ciders->have_posts()) : $ciders->the_post();
