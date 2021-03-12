@@ -17,39 +17,36 @@
                 )
             );
         
-        if ( $ciders->have_posts() ) : 
-            while ( $ciders->have_posts() ) : $ciders->the_post();
-            // die(var_dump($post)); Use die, var_dump to show PHP object
-            the_title('<h2>', '</h2>');
+            if ( $ciders->have_posts() ) : 
+                while ( $ciders->have_posts() ) : $ciders->the_post();
+                // die(var_dump($post)); Use die, var_dump to show PHP object
+                the_title('<h2>', '</h2>');
         ?>
-        <small>
-            <?php 
-                $catList = get_the_terms( $ciders->ID, 'Sweetness' );
-                $i = 0;
-                foreach ($catList as $term) {
-                    $i += 1;
-                    if ($i > 1) {
-                        echo ", " . $term->name;
-                    } else {
-                        echo $term->name;
+            <small>
+                <?php 
+                    $catList = get_the_terms( $ciders->ID, 'Sweetness' );
+                    $i = 0;
+                    foreach ($catList as $term) {
+                        $i += 1;
+                        if ($i > 1) {
+                            echo ", " . $term->name;
+                        } else {
+                            echo $term->name;
+                        }
                     }
-                }
-            ?> || 
-            <?php 
-                $tagList = get_the_terms( $ciders->ID, 'tags' ); 
-                $i = 0;
-                foreach ($tagList as $term) {
-                    $i += 1;
-                    if ($i > 1) {
-                        echo ", " . $term->name;
-                    } else {
-                        echo $term->name;
-                    }
-                }
-            ?> 
-        </small>
+                ?>
+            </small>
         <?php 
             the_content();
+
+            $tagList = get_the_terms( $ciders->ID,'tags' ); 
+            $i = 0;
+            $tag;
+            foreach ($tagList as $term) {
+                $tag = $term->name;
+                echo "<p class='badge bg-secondary m-1'>$tag</p>";
+            }
+       
             endwhile;
         else :
             // When no posts are found, output this text.

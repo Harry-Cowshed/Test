@@ -20,7 +20,8 @@
         wp_nav_menu(
             [
                 'theme_location' => 'main_nav',
-                'menu_class' => 'main_nav'
+                'menu_class' => 'main_nav',
+                'orderby' => 'menu_order',
             ]
         )
     ?>

@@ -21,7 +21,6 @@ header:after {
 .main_nav ul {
  list-style-type: none;
  display: flex;
- flex-direction: row-reverse;
  justify-content: space-evenly;
 }
 
