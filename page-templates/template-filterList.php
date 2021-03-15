@@ -10,14 +10,14 @@
 
     <?php
 
-    $terms = get_terms([
+    $catTerms = get_terms([
         'taxonomy' => 'Sweetness',
         'hide_empty' => false
     ]);
 
     echo '<select name="sweetness">';
 
-    foreach ($terms as $term) :
+    foreach ($catTerms as $term) :
 
         $sweetness = '';
         if (isset($_GET['sweetness'])) {
@@ -26,6 +26,28 @@
             }
         }
         echo '<option value="' . $term->slug . '"' . $sweetness . '>' . $term->name . '</option>';
+
+    endforeach;
+
+    echo '</select>';
+
+
+    $tagTerms = get_terms([
+        'taxonomy' => 'tags',
+        'hide_empty' => false
+    ]);
+
+    echo '<select name="tag">';
+
+    foreach ($tagTerms as $term) :
+
+        $tag = '';
+        if (isset($_GET['tag'])) {
+            if ($_GET['tag'] == $term->slug) {
+                $tag = 'selected';
+            }
+        }
+        echo '<option value="' . $term->slug . '"' . $tag . '>' . $term->name . '</option>';
 
     endforeach;
 
@@ -48,7 +70,7 @@
         if (isset($_GET['submitted'])) :
 
             $searched = esc_html($_GET['sweetness']);
-
+            $searchedTags = esc_html($_GET['tag']);
         endif;
 
         $args = [
@@ -60,7 +82,12 @@
                     'taxonomy' => 'Sweetness',
                     'field' => 'slug',
                     'terms' => $searched,
-                ]
+                ],
+                [
+                    'taxonomy' => 'tags',
+                    'field' => 'slug',
+                    'terms' => $searchedTags,
+                ],
             ]
         ];
 
