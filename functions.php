@@ -1,6 +1,6 @@
 <?php
 // Enqueue scripts and styles
-function loadBootstrap()
+function loadStyleAndScripts()
 {
     // CSS
     wp_register_style('bootCSS', get_template_directory_uri() . '/bootstrap/css/bootstrap.min.css', array(), false, 'all');
@@ -11,9 +11,16 @@ function loadBootstrap()
     wp_register_script('bootJS', get_template_directory_uri() . '/bootstrap/js/bootstrap.min.js', 'jquery', false, true);
     wp_enqueue_script('bootJS');
     // Main JS file 
-    wp_enqueue_script('main_js', get_template_directory_uri() . '/js/main.js', NULL, 1.0, true);
+    wp_enqueue_script('main_js', get_template_directory_uri() . '/js/main.js', ['wp-api'], 1.0, true);
+
+    // Nonce 
+    wp_enqueue_script('wp-api');
+    wp_localize_script('main_js', 'wpApiSettings', array(
+        'root' => esc_url_raw(rest_url()),
+        'nonce' => wp_create_nonce('wp_rest')
+    ));
 }
-add_action('wp_enqueue_scripts', 'loadBootstrap');
+add_action('wp_enqueue_scripts', 'loadStyleAndScripts');
 
 // Link CSS 
 function loadCss()
@@ -36,7 +43,8 @@ function create_post_type()
         'rewrite' => ['slug' => 'ciders'],
         'taxonomies' => ['Sweetness'],
         'show_in_rest' => true,
-        'rest_base' => 'Ciders', // changes base URL. URL will read 'Ciders' not 'wp_ciders'
+        'rest_base' => 'ciders', // changes base URL. URL will read 'ciders' not 'wp_ciders'
+        'rest_controller_class' => 'WP_REST_Posts_Controller',
     );
 
     register_post_type('wp_ciders', $args);
