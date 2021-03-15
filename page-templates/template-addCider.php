@@ -9,7 +9,7 @@
         <h2><?php get_template_part('includes/section', 'content'); ?></h2>
 
         <!-- cider input form -->
-        <form class="ciderForm">
+        <form class="ciderForm" id="ciderForm">
             <div class="mb-3">
                 <label for="text" class="form-label">Title:</label>
                 <input type="text" name="cider-name" class="form-control" id="text" placeholder="name of cider">

@@ -15,10 +15,10 @@ function loadStyleAndScripts()
 
     // Nonce 
     wp_enqueue_script('wp-api');
-    wp_localize_script('main_js', 'wpApiSettings', array(
-        'root' => esc_url_raw(rest_url()),
-        'nonce' => wp_create_nonce('wp_rest')
-    ));
+    // wp_localize_script('main_js', 'wpApiSettings', array(
+    //     'root' => esc_url_raw(rest_url()),
+    //     'nonce' => wp_create_nonce('wp_rest')
+    // ));
 }
 add_action('wp_enqueue_scripts', 'loadStyleAndScripts');
 

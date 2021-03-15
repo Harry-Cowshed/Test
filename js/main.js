@@ -50,6 +50,7 @@ if (addCiderBtn) {
             var xhr = ciderPost.save( null, {
                success: function(response) {
                  console.log(response);
+                 document.getElementById('ciderForm').reset(); // clear form
                },
                error: function(response) {
                  console.log(response);
@@ -57,6 +58,7 @@ if (addCiderBtn) {
              });
           
           });
+
 
     }
 
