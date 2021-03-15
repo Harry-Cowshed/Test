@@ -10,6 +10,8 @@ function loadBootstrap()
     wp_enqueue_script('jquery'); // should be already known
     wp_register_script('bootJS', get_template_directory_uri() . '/bootstrap/js/bootstrap.min.js', 'jquery', false, true);
     wp_enqueue_script('bootJS');
+    // Main JS file 
+    wp_enqueue_script('main_js', get_template_directory_uri() . '/js/main.js', NULL, 1.0, true);
 }
 add_action('wp_enqueue_scripts', 'loadBootstrap');
 
@@ -24,7 +26,7 @@ add_action('wp_enqueue_scripts', 'loadCss');
 // Custom post function
 function create_post_type()
 {
-    $loop = array(
+    $args = array(
         'labels' => [
             'name' => __('Ciders'),
             'singular_name' => __('Cider')
@@ -32,10 +34,12 @@ function create_post_type()
         'public' => true,
         'has_archive' => true,
         'rewrite' => ['slug' => 'ciders'],
-        'taxonomies' => ['Sweetness']
+        'taxonomies' => ['Sweetness'],
+        'show_in_rest' => true,
+        'rest_base' => 'Ciders', // changes base URL. URL will read 'Ciders' not 'wp_ciders'
     );
 
-    register_post_type('wp_ciders', $loop);
+    register_post_type('wp_ciders', $args);
 }
 // Hooking up our function to theme setup
 add_action('init', 'create_post_type');
