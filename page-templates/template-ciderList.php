@@ -26,26 +26,31 @@
                 <small>
                     <?php
                     $catList = get_the_terms($ciders->ID, 'Sweetness');
-                    $i = 0;
-                    foreach ($catList as $term) {
-                        $i += 1;
-                        if ($i > 1) {
-                            echo ", " . $term->name;
-                        } else {
-                            echo $term->name;
+                    if ($catList) {
+                        $i = 0;
+                        foreach ($catList as $term) {
+                            $i += 1;
+                            if ($i > 1) {
+                                echo ", " . $term->name;
+                            } else {
+                                echo $term->name;
+                            }
                         }
                     }
+
                     ?>
                 </small>
         <?php
                 the_content();
 
                 $tagList = get_the_terms($ciders->ID, 'tags');
-                $i = 0;
-                $tag;
-                foreach ($tagList as $term) {
-                    $tag = $term->name;
-                    echo "<p class='badge bg-secondary m-1'>$tag</p>";
+                if ($tagList) {
+                    $i = 0;
+                    $tag;
+                    foreach ($tagList as $term) {
+                        $tag = $term->name;
+                        echo "<p class='badge bg-secondary m-1'>$tag</p>";
+                    }
                 }
 
             endwhile;
