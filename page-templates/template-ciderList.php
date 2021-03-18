@@ -30,11 +30,7 @@
                         $i = 0;
                         foreach ($catList as $term) {
                             $i += 1;
-                            if ($i > 1) {
-                                echo ", " . $term->name;
-                            } else {
-                                echo $term->name;
-                            }
+                            echo ($i > 1 ? ', ' : '') . $term->name;
                         }
                     }
 
